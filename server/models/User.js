@@ -12,7 +12,7 @@ const model = {
         });    
     },
     add(input, cb){
-        if(input.Password.length < 8){
+        if(input.password.length < 4){
             cb(Error('A longer Password is Required'));
             return;
         }
