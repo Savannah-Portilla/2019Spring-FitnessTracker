@@ -27,8 +27,8 @@ const model = {
                             cb(err, data);
                         })
                     }
-        );    
+        );  
     }
-};
+},
 
 module.exports = model;
