@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js src/app.js --exec 'npm run lint && node'",
+    "start": "nodemon src/app.js --exec  \"npm run lint && node\"",
     "lint": "./node_modules/.bin/eslint"
   },
   "keywords": [],
@@ -14,11 +14,13 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "joi": "^14.3.1",
     "morgan": "^1.9.1",
     "sequelize": "^5.1.0",
     "sqlite3": "^4.0.6"
   },
   "devDependencies": {
+    "check-dependencies": "^1.1.0",
     "eslint": "^5.15.2",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
