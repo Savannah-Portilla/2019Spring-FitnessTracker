@@ -7,12 +7,12 @@ const model = {
               cb(err,data);
                 return;
             } // ****** WHY IS ROUTINE "NEVER USED"?
-            var routineID = conn.query("SELECT ROUTINE_ID FROM Fitness_Users_Routines WHERE USER_ID=?", [[input.userID]], (err, data) => {
+            var routineID = conn.query("SELECT ROUTINE_ID FROM Fitness_Users_Routines WHERE USER_ID=?", [[userID]], (err, data) => {
                 if(err) {
                     cb(err,data);
                       return; 
                 }
-                conn.query("SELECT * FROM Fitness_Routines WHERE ID=?", [[input.routineID]], (err, data) => {
+                conn.query("SELECT * FROM Fitness_Routines WHERE ID=?", [[routineID]], (err, data) => {
                     cb(err, data);   
                 })
             });    
@@ -46,7 +46,7 @@ const model = {
                 var newRoutine = conn.query('INSERT ' + Fitness_Routines + ' SET ID = ' + mysql.escape(ID) + 
                                 ', name = ' + mysql.escape(name) +
                                 ', date_create = ' + mysql.escape(new Date()) + 
-                                ', date_updated = ' + mysql.escape(date_updated) +
+                                ', date_updated = ' + mysql.escape(date_updated) + // have to inner join
                                 ' WHERE Fitness_Users_Routines_USER_ID = ' + [[input.userID]], (err) => {
                     if (err) throw err;
                     //SQL Search

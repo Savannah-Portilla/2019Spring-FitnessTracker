@@ -169,7 +169,7 @@ const model = {
                     if(err) {
                       cb(err,data);
                         return; 
-                    }
+                    }  // do if else, if foodname doesnt exist, throw error
                     conn.query('INSERT ' + Fitness_Daily_Foods + 'ADD Fitness_Daily_Foods_Food_name = ' + 
                     [[insert.foodName]], (err) => {
                         if (err) throw err;    
