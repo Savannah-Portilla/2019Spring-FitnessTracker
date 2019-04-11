@@ -1,6 +1,64 @@
 const conn = require('./mysql_connection');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const SALT_ROUNDS = 8;
+const JWT_SECRET = process.env.JWT_SECRET || 'some long string..';
 
 const model = {
+    async getAll(){
+        return await conn.query("SELECT * FROM Fitness_Exercizes");   
+    },
+    async getExercize(id){
+        const data = await conn.query("SELECT * FROM Fitness_Exrcizes WHERE Id=?", id);
+        if(!data){
+            throw Error("Exercize not found");
+        }
+        return data[0];
+    },
+    async addExercize(input){
+        const data = await conn.query(
+            `INSERT INTO Fitness_Exercizes E Join Fitness_Users_Exercizes UE On E.ID = UE.EXERCIZE_ID 
+            Join Fitness_Users U On UE.USER_ID = U.ID 
+            (name,date_created,date_updated) WHERE U.VALUE=`, email, 
+            [[input.name, input.date_created, new Date()]]
+        );
+        return await model.get(data.insertId);
+    },
+    getFromToken(token){
+        return jwt.verify(token, JWT_SECRET);
+    },
+    async updateExercize(email, name){
+        const data = await conn.query(
+            `Update Fitness_Exercizes E Join Fitness_Users_Exercizes UE On E.ID = UE.EXERCIZE_ID 
+            Join Fitness_Users U On UE.USER_ID = U.ID 
+            Set ?
+            WHERE U.VALUE= and E.VALUE=`, email, name);
+        if(data.length == 0){
+            throw Error('Exercize Not Found')
+        }else{
+        return { status: "success", msg: "Exercize Succesfully Updated" };
+        }
+    },  
+    async deleteExercize(email, name){
+        const data = await conn.query(
+            `DELETE * FROM Fitness_Workouts W Join Fitness_Users_Workouts UW On W.ID = UW.WORKOUT_ID 
+            Join Fitness_Users U On UW.USER_ID = U.ID 
+            WHERE U.VALUE= and W.VALUE=`, email, name);
+        if(data.length == 0){
+            throw Error('Exercize Not Found')
+        }else{
+        return { status: "success", msg: "Exercize Succesfully Deleted" };
+        }
+    }, 
+}; 
+
+
+
+
+
+
+/* const model = {
         getAll(cb){ // get all exercizes of user
             var userID = conn.query("SELECT ID FROM Fitness_Users WHERE email=?", [[input.email]], (err, data) => {
                 if(err) {
@@ -128,6 +186,6 @@ const model = {
             cb(err, data[0]);
         });
     }
-};
+}; */
 
 module.exports = model;

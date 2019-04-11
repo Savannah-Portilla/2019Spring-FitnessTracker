@@ -1,5 +1,6 @@
 const mysql =   require('mysql');
                 require('dotenv').load();
+const util = require('util');
 
 const conn = mysql.createPool({
     host: process.env.MYSQL_HOST,
@@ -8,7 +9,9 @@ const conn = mysql.createPool({
     database: process.env.MYSQL_DB,
     // add?: port: ....,
     connectionLimit: 10,
-    // insecureAuth: true
+    insecureAuth: true
 });
+
+conn.query = util.promisify(conn.query) 
 
 module.exports = conn;

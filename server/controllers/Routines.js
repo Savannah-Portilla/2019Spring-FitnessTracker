@@ -3,6 +3,12 @@ const Routine = require('../models/Routine');
 
 const app = express.Router();
 
+app.get("/", async (req, res, next) => {
+    Routine.getAll()
+    .then(x=> res.send(x) )
+    .catch(next)
+
+}),
 app.get("/getAll", (req, res) => {
 
     Routine.getAll((err, data) => {

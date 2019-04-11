@@ -1,41 +1,58 @@
 const conn = require('./mysql_connection');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const SALT_ROUNDS = 8;
+const JWT_SECRET = process.env.JWT_SECRET || 'some long string..';
 
 const model = {
-    getAll(input, cb){  // return all of users workouts
-      var userID = conn.query("SELECT ID FROM Fitness_Users WHERE email=?", [[input.email]], (err, data) => {
-          if(err) {
-            cb(err);
-              return;
-          }
-      });
-      var workoutID = conn.query("SELECT WORKOUT_ID FROM Fitness_Users_Workouts WHERE USER_ID=?", [[input.userID]], (err, data) => {
-        if(err) {
-          cb(err);
-            return; 
-        }
-      });
-      conn.query("SELECT * FROM Fitness_Workouts WHERE ID=?", [[input.workoutID]], (err, data) => {
-        cb(err, data);   
-      });
-},
-    getWorkout(input, cb){  // pull a specific workout by name
-      var userID = conn.query("SELECT ID FROM Fitness_Users WHERE email=?", [[input.email]], (err, data) => {
-          if(err) {
-            cb(err);
-              return;
-          }
-      });
-      var workoutID = conn.query("SELECT WORKOUT_ID FROM Fitness_Users_Workouts WHERE USER_ID=?", [[input.userID]], (err, data) => {
-        if(err) {
-          cb(err);
-            return; 
-        }
-      });
-      conn.query("SELECT * FROM Fitness_Workouts WHERE NAME=? AND ID=?", [[input.name, input.workoutID]], (err, data) => {
-            cb(err, data[0]);
-        });    
+    async getAll(){
+        return await conn.query("SELECT * FROM Fitness_Workouts");   
     },
-    addWorkout(input, cb){  // add new workout
+    async getWorkout(id){
+        const data = await conn.query("SELECT * FROM Fitness_Workouts WHERE Id=?", id);
+        if(!data){
+            throw Error("Workout not found");
+        }
+        return data[0];
+    },
+    async addWorkout(input){
+        const data = await conn.query(
+            `INSERT INTO Fitness_Workouts W Join Fitness_Users_Workouts UW On W.ID = UW.WORKOUT_ID 
+            Join Fitness_Users U On UW.USER_ID = U.ID 
+            (name,date_time,calories_burned,workout_minutes,created_at) WHERE U.VALUE=`, email, 
+            [[input.name, input.date_time, input.calories_burned, input.workout_minutes, new Date()]]
+        );
+        return await model.get(data.insertId);
+    },
+    getFromToken(token){
+        return jwt.verify(token, JWT_SECRET);
+    },
+    async updateWorkout(email, name){
+        const data = await conn.query(
+            `Update Fitness_Workouts W Join Fitness_Users_Workouts UW On W.ID = UW.WORKOUT_ID 
+            Join Fitness_Users U On UW.USER_ID = U.ID 
+            Set ?
+            WHERE U.VALUE= and W.VALUE=`, email, name);
+        if(data.length == 0){
+            throw Error('Workout Not Found')
+        }else{
+        return { status: "success", msg: "Workout Succesfully Updated" };
+        }
+    },  
+    async deleteWorkout(email, name){
+        const data = await conn.query(
+            `DELETE * FROM Fitness_Workouts W Join Fitness_Users_Workouts UW On W.ID = UW.WORKOUT_ID 
+            Join Fitness_Users U On UW.USER_ID = U.ID 
+            WHERE U.VALUE= and W.VALUE=`, email, name);
+        if(data.length == 0){
+            throw Error('Workout Not Found')
+        }else{
+        return { status: "success", msg: "Workout Succesfully Deleted" };
+        }
+    }, 
+}; 
+    /* addWorkout(input, cb){  // add new workout
         var userID = conn.query("SELECT ID FROM Fitness_Users WHERE email=?", [[input.email]], (err, data) => {
             if(err) {
               cb(err,data);
@@ -59,8 +76,8 @@ const model = {
                     });
                 });
         });
-    },
-    updateWorkout(input, cb){  // update an existing workout
+    }, */
+    /* updateWorkout(input, cb){  // update an existing workout
         var userID = conn.query("SELECT ID FROM Fitness_Users WHERE email=?", [[input.email]],
         (err, data) => {
             if(err) {
@@ -136,6 +153,6 @@ const model = {
             cb(err, data[0]);
         });
     }
-};
+}; */
 
 module.exports = model;

@@ -3,6 +3,12 @@ const Exercize = require('../models/Exercize');
 
 const app = express.Router();
 
+app.get("/", async (req, res, next) => {
+    Exercize.getAll()
+    .then(x=> res.send(x) )
+    .catch(next)
+
+}),
 app.get("/getAll", (req, res) => {
 
     uExercize.getAll((err, data) => {

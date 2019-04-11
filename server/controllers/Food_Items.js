@@ -3,6 +3,12 @@ const Food_Item = require('../models/Food_Item');
 
 const app = express.Router();
 
+app.get("/", async (req, res, next) => {
+    Food_Item.getAll()
+    .then(x=> res.send(x) )
+    .catch(next)
+
+}),
 app.get("/getAll", (req, res) => { 
 
     Food_Item.getAll((err, data) => {

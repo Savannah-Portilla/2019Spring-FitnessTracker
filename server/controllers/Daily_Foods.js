@@ -3,6 +3,12 @@ const Food_List = require('../models/Daily_Food');
 
 const app = express.Router();
 
+app.get("/", async (req, res, next) => {
+    Daily_Food.getAll()
+    .then(x=> res.send(x) )
+    .catch(next)
+
+}),
 app.get("/getAll", (req, res) => {
 
     Daily_Food.getAll((err, data) => {

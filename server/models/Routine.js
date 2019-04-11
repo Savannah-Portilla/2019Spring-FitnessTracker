@@ -1,7 +1,61 @@
 const conn = require('./mysql_connection');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const SALT_ROUNDS = 8;
+const JWT_SECRET = process.env.JWT_SECRET || 'some long string..';
 
 const model = {
-    getAll(cb){ // get all routines of user
+    async getAll(){
+        return await conn.query("SELECT * FROM Fitness_Routines");   
+    },
+    async getRoutine(id){
+        const data = await conn.query("SELECT * FROM Fitness_Routines WHERE Id=?", id);
+        if(!data){
+            throw Error("Routine not found");
+        }
+        return data[0];
+    },
+    async addRoutine(input){
+        const data = await conn.query(
+            `INSERT INTO Fitness_Routines R Join Fitness_Users_Routines UR On R.ID = UR.ROUTINE_ID 
+            Join Fitness_Users U On UR.USER_ID = U.ID 
+            (name,date_created,exercizes,date_updated) WHERE U.VALUE=`, email, 
+            [[input.name, input.date_created, input.exercizes, new Date()]]
+        );
+        return await model.get(data.insertId);
+    },
+    getFromToken(token){
+        return jwt.verify(token, JWT_SECRET);
+    },
+    async updateRoutine(email, name){
+        const data = await conn.query(
+            `Update Fitness_Routines R Join Fitness_Users_Routines UR On R.ID = UR.ROUTINE_ID 
+            Join Fitness_Users U On UR.USER_ID = U.ID 
+            Set ?
+            WHERE U.VALUE= and R.VALUE=`, email, name);
+        if(data.length == 0){
+            throw Error('Routine Not Found')
+        }else{
+        return { status: "success", msg: "Routine Succesfully Updated" };
+        }
+    },  
+    async deleteRoutine(email, name){
+        const data = await conn.query(
+            `DELETE * FROM Fitness_Routines R Join Fitness_Users_Routines UR On R.ID = UR.ROUTINE_ID 
+            Join Fitness_Users U On UR.USER_ID = U.ID 
+            Set ?
+            WHERE U.VALUE= and R.VALUE=`, email, name);
+        if(data.length == 0){
+            throw Error('Routine Not Found')
+        }else{
+        return { status: "success", msg: "Routine Succesfully Deleted" };
+        }
+    }, 
+
+
+
+    /* getAll(cb){ // get all routines of user
         var userID = conn.query("SELECT ID FROM Fitness_Users WHERE email=?", [[input.email]], (err, data) => {
             if(err) {
               cb(err,data);
@@ -58,9 +112,16 @@ const model = {
                     });
                 });
         });
+    }, */
+    async addExercizesToRoutine(input){
+        const data = await conn.query(
+            `INSERT INTO Fitness_Routines R Join Fitness_Users_Routines UR On R.ID = UR.ROUTINE_ID 
+            Join Fitness_Users U On UR.USER_ID = U.ID 
+            (exercizes,date_updated) WHERE U.VALUE= AND R.VALUE=`, email, name, 
+            [[input.exercizes, new Date()]]
+        );
     },
-
-    addExercizesToRoutine(input, cb){
+    /* addExercizesToRoutine(input, cb){
         var userID = conn.query("SELECT ID FROM Fitness_Users WHERE email=?", [[input.email]], (err, data) => {
             if(err) {
               cb(err,data);
@@ -88,9 +149,19 @@ const model = {
                 });
             });
         });
-    },
-
-    deleteExercizesFromRoutine(input, cb){
+    }, */
+    async deleteExercizesFromRoutine(email, name){
+        const data = await conn.query(
+            `DELETE Fitness_Routines_exercizes FROM Fitness_Routines R Join Fitness_Users_Routines UR On R.ID = UR.ROUTINE_ID 
+            Join Fitness_Users U On UR.USER_ID = U.ID 
+            WHERE U.VALUE= and R.VALUE=`, email, exercizes);
+        if(data.length == 0){
+            throw Error('Exercize Not Found')
+        }else{
+        return { status: "success", msg: "Routine Exercize Succesfully Deleted" };
+        }
+    }, 
+    /* deleteExercizesFromRoutine(input, cb){
         var userID = conn.query("SELECT ID FROM Fitness_Users WHERE email=?", [[input.email]], (err, data) => {
             if(err) {
               cb(err,data);
@@ -118,8 +189,8 @@ const model = {
             });
         });
     },
-            
-    updateRoutine(input, cb){
+             */
+    /* updateRoutine(input, cb){
         var userID = conn.query("SELECT ID FROM Fitness_Users WHERE email=?", [[input.email]],
         (err, data) => {
             if(err) {
@@ -189,7 +260,7 @@ const model = {
         [[input.routineToDelete]], (err, data) => {
             cb(err, data[0]);
         });
-    }
+    } */
 };
 
 module.exports = model;

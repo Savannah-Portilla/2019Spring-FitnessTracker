@@ -3,6 +3,12 @@ const Workout = require('../models/Workout');
 
 const app = express.Router();
 
+app.get("/", async (req, res, next) => {
+    Workout.getAll()
+    .then(x=> res.send(x) )
+    .catch(next)
+
+}),
 app.get("/getAll", (req, res) => { 
 
     Workout.getAll((err, data) => {
