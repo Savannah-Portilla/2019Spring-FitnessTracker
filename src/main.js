@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import './assests/main.scss'
+import './assets/main.scss'
 import router from './router'
 import 'bootstrap/scss/bootstrap.scss'
 

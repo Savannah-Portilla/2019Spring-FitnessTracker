@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import MyFriends from "./views/MyFriends.vue";
+import Register from "./views/Register.vue";
+import Login from "./views/Login.vue";
 
 Vue.use(Router)
 
@@ -14,7 +17,22 @@ export default new Router({
       component: Home
     },
     {
-      path: '/About',
+      path: '/MyFriends',
+      name: 'my-friends',
+      component: MyFriends
+    },
+    {
+      path: '/Register',
+      name: 'register',
+      component: Register
+    },
+    {
+      path: '/Login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/about',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
