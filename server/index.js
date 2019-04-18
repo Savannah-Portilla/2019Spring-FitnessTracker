@@ -24,11 +24,11 @@ app.use(function(req, res, next) {
   app.use(express.static(path.join(__dirname, "../dist")));
   app.use(function(req, res, next) {
     try {
-      const token = (req.headers.authorization || "").split(' ')[1]
+      const token = (req.headers.Authorization || "").split(' ')[1]
       req.User = userModel.getFromToken(token);
     } catch (error) {
-      const openActions = ['POST/users', 'POST/users/login', 'GET/login', 'GET/myfriends']
-      if(req.methods != "OPTIONS" && !openActions.includes(req.method + req.path.toLowerCase())){ // check if login required
+      const openActions = ['POST/users', 'POST/users/loginuser', 'GET/loginuser', 'GET/myfriends']
+      if(req.method != "OPTIONS" && !openActions.includes(req.method + req.path.toLowerCase())){ // check if login required
         next(Error("Login Required"));
       }
     }

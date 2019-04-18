@@ -28,18 +28,36 @@
                 <div class="form-group">
                   <label for="l_name">Last Name</label>
                   <input type="text" v-model="data.l_name"
-                    class="form-control" name="LastName" id="LastName" aria-describedby="helpLastName" placeholder="Last Name">
+                    class="form-control" name="l_name" id="l_name" aria-describedby="helpLastName" placeholder="Last Name">
                   <small id="helpLastName" class="form-text text-muted">Sir Name</small>
                 </div>
                 <div class="form-group">
-                  <label for="Password">Password</label>
-                  <input type="password" v-model="data.Password"
-                    class="form-control" name="Password" id="Password" placeholder="Password">
+                  <label for="password">Password</label>
+                  <input type="password" v-model="data.password"
+                    class="form-control" name="password" id="password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                  <label for="Birthday">Birthday</label>
-                  <input type="date" v-model="data.Birthday"
-                    class="form-control" name="Birthday" id="Birthday" aria-describedby="helpBirthday" placeholder="Your Birthday">
+                  <label for="weight">Current Weight</label>
+                  <input type="text" v-model="data.weight"
+                    class="form-control" name="weight" id="weight" aria-describedby="helpweight" placeholder="Weight">
+                  <small id="helpWeight" class="form-text text-muted">This is private information only visible to you.</small>
+                </div>
+                <div class="form-group">
+                  <label for="weight_goal">Weight Goal</label>
+                  <input type="text" v-model="data.weight_goal"
+                    class="form-control" name="weight_goal" id="weight_goal" aria-describedby="helpweight_goal" placeholder="Weight Goal">
+                  <small id="helpweight_goal" class="form-text text-muted">You can always update this goal later.</small>
+                </div>
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input type="text" v-model="data.email"
+                    class="form-control" name="email" id="email" aria-describedby="helpemail" placeholder="email">
+                  <small id="helpemail" class="form-text text-muted">Your e-mail will act as your username.</small>
+                </div>
+                <div class="form-group">
+                  <label for="birthday">Birthday</label>
+                  <input type="date" v-model="data.birthday"
+                    class="form-control" name="birthday" id="birthday" aria-describedby="helpBirthday" placeholder="Your Birthday">
                   <small id="helpBirthday" class="form-text text-muted">Please include the year</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -53,7 +71,7 @@
         <div class="card-body">
           <h4 class="card-title">Congrats! You've Registered</h4>
           <p class="card-text">
-            {{newUser.FirstName}} {{newUser.LastName}} 
+            {{newUser.f_name}} {{newUser.l_name}} 
           </p>
         </div>
       </div>
