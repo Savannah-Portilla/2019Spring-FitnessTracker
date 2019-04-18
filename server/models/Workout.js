@@ -37,7 +37,7 @@ const model = {
         if(data.length == 0){
             throw Error('Workout Not Found')
         }else{
-        return { status: "success", msg: "Workout Succesfully Updated" };
+        return { status: "success", message: "Workout Succesfully Updated" };
         }
     },  
     async deleteWorkout(email, name){
@@ -48,7 +48,7 @@ const model = {
         if(data.length == 0){
             throw Error('Workout Not Found')
         }else{
-        return { status: "success", msg: "Workout Succesfully Deleted" };
+        return { status: "success", message: "Workout Succesfully Deleted" };
         }
     }, 
 }; 

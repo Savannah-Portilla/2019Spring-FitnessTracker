@@ -34,8 +34,9 @@ app.post("/loginUser", (req, res) => {
         .then(x=> releaseEvents.send(x) )
         .catch(next)
 });
+
 app.post("/changePassword", (req, res, next) => {
-    user.changePassword(req.body.email, req.body.oldPassword, req.body.newPassword)
+    User.changePassword(req.body.email, req.body.oldPassword, req.body.newPassword)
     .then(x=>  res.send(x) )
     .catch(next)
 });

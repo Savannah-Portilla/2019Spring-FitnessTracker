@@ -18,16 +18,16 @@ const model = {
   },
   async addUser(input){   // Signup a new user
     // make sure password is long enough
-    if(!input.Password){
+    if(!input.password){
       throw Error('Password is Required');
     }
-    if(input.Password.length < 8){
+    if(input.password.length < 8){
       throw Error('A longer Password is Required');
     }
-    const hashedPassword = await bcrypt.hash(input.Password, SALT_ROUNDS)
+    const hashedPassword = await bcrypt.hash(input.password, SALT_ROUNDS)
     const data = await conn.query(
-      "INSERT INTO Fitness_Users (f_name,l_name,password,weight,weight_goal,email,created_at) VALUES (?)",
-      [[input.f_name, input.l_name, hashedPassword, input.weight, input.weight_goal, input.email, new Date()]] 
+      "INSERT INTO Fitness_Users (f_name,l_name,password,weight,weight_goal,email,birthday,date_created) VALUES (?)",
+      [[input.f_name, input.l_name, hashedPassword, input.weight, input.weight_goal, input.email, input.birthday, new Date()]] 
     );
     return await model.get(data.insertId);
   },
@@ -59,7 +59,7 @@ const model = {
         await conn.query(`Update Fitness_Users
                         Set ?
                     WHERE email=?`,[ {Password: hashedPassword }, data[0].email]);
-        return { status: "success", msg: "Password Succesfully Changed" };
+        return { status: "success", message: "Password Succesfully Changed" };
     }else{
         throw Error('Wrong Password');
     }
@@ -72,7 +72,7 @@ async updateUser(email){
   if(data.length == 0){
       throw Error('User Not Found')
   }else{
-  return { status: "success", msg: "User Succesfully Updated" };
+  return { status: "success", message: "User Succesfully Updated" };
   }
 },  
 async deleteUser(email){
@@ -81,7 +81,7 @@ async deleteUser(email){
   if(data.length == 0){
       throw Error('User Not Found')
   }else{
-  return { status: "success", msg: "User Succesfully Deleted" };
+  return { status: "success", message: "User Succesfully Deleted" };
   }
 }, 
 }; 

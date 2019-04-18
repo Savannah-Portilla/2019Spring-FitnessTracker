@@ -1,7 +1,7 @@
-const API_ROOT = process.env.API_ROOT || "http://localhost:3000/";
+const API_ROOT = process.env.API_ROOT || "http://localhost:3320/";
 
 export const Globals = {
-    user: null,
+    User: null,
     errors: [],
     deleteError(i){
         this.errors.splice(i, 1);
@@ -9,13 +9,14 @@ export const Globals = {
 }
 
 export function login(){
-    Globals.user = { name: "Bernie" }
+    Globals.User = { name: "Bernie" }
 }
 
 export async function api(url, data){
     let response = null;
+    let headers = { "Authorization": `Bearer ${Globals.token}`}
     if(!data){
-        response = await fetch(API_ROOT + url);
+        response = await fetch(API_ROOT + url, { headers });
     }else{
         response = await fetch(API_ROOT + url, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.

@@ -37,7 +37,7 @@ const model = {
         if(data.length == 0){
             throw Error('Food Item Not Found')
         }else{
-        return { status: "success", msg: "Food Item Succesfully Updated" };
+        return { status: "success", message: "Food Item Succesfully Updated" };
         }
     },  
     async deleteFood(email, name){
@@ -48,7 +48,7 @@ const model = {
         if(data.length == 0){
             throw Error('Food Item Not Found')
         }else{
-        return { status: "success", msg: "Food Item Succesfully Deleted" };
+        return { status: "success", message: "Food Item Succesfully Deleted" };
         }
     }, 
 }; 

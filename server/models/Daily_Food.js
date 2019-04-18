@@ -37,7 +37,7 @@ const model = {
         if(data.length == 0){
             throw Error('Log for this Date Not Found')
         }else{
-        return { status: "success", msg: "Daily Food Log Entry Succesfully Updated" };
+        return { status: "success", message: "Daily Food Log Entry Succesfully Updated" };
         }
     },  
     async deleteDailyFoods(email, date){
@@ -48,7 +48,7 @@ const model = {
         if(data.length == 0){
             throw Error('Log for this Date Not Found')
         }else{
-        return { status: "success", msg: "Daily Food Log Entry Succesfully Deleted" };
+        return { status: "success", message: "Daily Food Log Entry Succesfully Deleted" };
         }
     }, 
     async addFoodItems(email, date, input){
@@ -67,7 +67,7 @@ const model = {
         if(data.length == 0){
             throw Error('Daily Log Not Found')
         }else{
-        return { status: "success", msg: "Daily Food Log Entry Succesfully Deleted" };
+        return { status: "success", message: "Daily Food Log Entry Succesfully Deleted" };
         }
     }, 
 

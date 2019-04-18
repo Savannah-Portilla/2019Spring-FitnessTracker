@@ -37,7 +37,7 @@ const model = {
         if(data.length == 0){
             throw Error('Routine Not Found')
         }else{
-        return { status: "success", msg: "Routine Succesfully Updated" };
+        return { status: "success", message: "Routine Succesfully Updated" };
         }
     },  
     async deleteRoutine(email, name){
@@ -49,7 +49,7 @@ const model = {
         if(data.length == 0){
             throw Error('Routine Not Found')
         }else{
-        return { status: "success", msg: "Routine Succesfully Deleted" };
+        return { status: "success", message: "Routine Succesfully Deleted" };
         }
     }, 
 
@@ -158,7 +158,7 @@ const model = {
         if(data.length == 0){
             throw Error('Exercize Not Found')
         }else{
-        return { status: "success", msg: "Routine Exercize Succesfully Deleted" };
+        return { status: "success", message: "Routine Exercize Succesfully Deleted" };
         }
     }, 
     /* deleteExercizesFromRoutine(input, cb){

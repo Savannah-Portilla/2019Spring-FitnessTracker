@@ -20,14 +20,14 @@
         <div class="card-text">
             <form @submit.prevent="submit">
                 <div class="form-group">
-                  <label for="FirstName">First Name</label>
-                  <input type="text" v-model="data.FirstName"
-                    class="form-control" name="FirstName" id="FirstName" aria-describedby="helpFirstName" placeholder="First Name">
+                  <label for="f_name">First Name</label>
+                  <input type="text" v-model="data.f_name"
+                    class="form-control" name="f_name" id="f_name" aria-describedby="helpFirstName" placeholder="First Name">
                   <small id="helpFirstName" class="form-text text-muted">If you have a middle name you can enter that too</small>
                 </div>
                 <div class="form-group">
-                  <label for="LastName">Last Name</label>
-                  <input type="text" v-model="data.LastName"
+                  <label for="l_name">Last Name</label>
+                  <input type="text" v-model="data.l_name"
                     class="form-control" name="LastName" id="LastName" aria-describedby="helpLastName" placeholder="Last Name">
                   <small id="helpLastName" class="form-text text-muted">Sir Name</small>
                 </div>
@@ -63,9 +63,10 @@
 
 <script>
 import { Globals } from "@/models/api";
-import { Register } from "@/models/users";
+import { Register } from "@/models/Users";
 import toastr from 'toastr';
 import 'toastr/build/toastr.css';
+
 export default {
     data: ()=> ({
         data: {},
@@ -79,7 +80,7 @@ export default {
               toastr.success("You've registered successfully!")
             } catch (error) {
               Globals.errors.push(error);
-              toastr.error(error.msg);
+              toastr.error(error.message);
             }
         }
     }

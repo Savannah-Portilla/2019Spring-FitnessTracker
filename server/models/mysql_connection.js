@@ -15,3 +15,5 @@ const conn = mysql.createPool({
 conn.query = util.promisify(conn.query) 
 
 module.exports = conn;
+
+// do i need to specify the database somewhere? 
