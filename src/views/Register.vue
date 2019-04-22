@@ -83,7 +83,7 @@
 import { Globals } from "@/models/api";
 import { Register } from "@/models/Users";
 import toastr from 'toastr';
-import 'toastr/build/toastr.css';
+//import 'toastr/build/toastr.css';
 
 export default {
     data: ()=> ({

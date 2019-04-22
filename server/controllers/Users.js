@@ -18,20 +18,28 @@ app.get("/:email", (req, res) => {   // get via email
     });
 
 });
-app.post("/addUser", (req, res) => {   
+/* 
+app.post("/register", (req, res) => {   
 
     console.log(req.body);
-    User.addUser(req.body, (err, data) => {
+    User.register(req.body, (err, data) => {
         if(err) throw err;
         res.send(data);
     });
 
-});    
-app.post("/loginUser", (req, res) => {   
+});   */  
 
-    //console.log(req.body);
-    User.loginUser(req.body.email, req.body.password)
-        .then(x=> releaseEvents.send(x) )
+app.post("/register", (req, res, next) => {
+    User.register(req.body)
+    .then(x=>  res.send(x))
+    .catch(next)
+}); 
+
+app.post("/login", (req, res, next) => {   
+
+    User.login(req.body.email, req.body.password)
+        //console.log(req.body)
+        .then(x=> res.send(x))
         .catch(next)
 });
 

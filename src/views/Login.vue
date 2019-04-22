@@ -43,7 +43,7 @@
 import { Globals } from "@/models/api";
 import { Login } from "@/models/Users";
 import toastr from 'toastr';
-import 'toastr/build/toastr.css';
+//import 'toastr/build/toastr.css';
 
 export default {
     data: ()=> ({
@@ -51,10 +51,13 @@ export default {
         newUser: null
     }),
     methods: {
-        async submit(){
+        async submit() {
             try {
               const m = await Login(this.data);
-              this.$router.push(Globals.redirectRoute)
+              this.newUser = m;
+              Globals.user = m.user;
+              Globals.token = m.token;
+              //this.$router.push(Globals.redirectRoute)
               toastr.success("You've logged in successfully!")
             } catch (error) {
               Globals.errors.push(error);

@@ -9,42 +9,45 @@ const model = {
   async getAll(){
     return await conn.query("SELECT * FROM Fitness_Users");   
   },
-  async get(email){  // Return User Information by email serch
-    const data = await conn.query("SELECT * FROM Fitness_Users WHERE email=?", email)
-    if(!data){
+  async get(id){  // Return User Information by email serch
+    const data = await conn.query("SELECT * FROM Fitness_Users WHERE ID=?", id)
+    if(!data.length){
       throw Error("User not found");
     }
     return data[0];  
   },
-  async addUser(input){   // Signup a new user
+  async register(input){   // Signup a new user
     // make sure password is long enough
     if(!input.password){
       throw Error('Password is Required');
     }
-    if(input.password.length < 8){
+    if(input.password.length < 6){
       throw Error('A longer Password is Required');
     }
     const hashedPassword = await bcrypt.hash(input.password, SALT_ROUNDS)
     const data = await conn.query(
       "INSERT INTO Fitness_Users (f_name,l_name,password,weight,weight_goal,email,birthday,date_created) VALUES (?)",
       [[input.f_name, input.l_name, hashedPassword, input.weight, input.weight_goal, input.email, input.birthday, new Date()]] 
-    );
-    return await model.get(data.insertId);
+      );
+    //console.log('async register');
+      const user = await model.get(data.insertId);
+      console.log({user})
+      return user;
   },
   getFromToken(token){
     return jwt.verify(token, JWT_SECRET);
   }, 
   //Search for a user by email and password
-  async loginUser(email, password){
+  async login(email, password){
     //console.log({ email, password })
     const data = await conn.query(`SELECT * FROM Fitness_Users WHERE email=?`, email);
     if(data.length == 0){
         throw Error('User Not Found');
     }
-    const x = await bcrypt.compare(password, data[0].Password);
+    const x = await bcrypt.compare(password, data[0].password);
     if(x){
-        const user = { ...data[0], password: null };
-        return { user, token: jwt.sign(user, JWT_SECRET) };
+        const user = {...data[0], password: null};
+        return {user, token: jwt.sign(user, JWT_SECRET)};
     }else{
         throw Error('Wrong Password');
     }

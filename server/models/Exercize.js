@@ -42,8 +42,8 @@ const model = {
     },  
     async deleteExercize(email, name){
         const data = await conn.query(
-            `DELETE * FROM Fitness_Workouts W Join Fitness_Users_Workouts UW On W.ID = UW.WORKOUT_ID 
-            Join Fitness_Users U On UW.USER_ID = U.ID 
+            `DELETE * FROM Fitness_Exercize E Join Fitness_Users_Exercize UE On E.ID = UE.EXERCIZE_ID 
+            Join Fitness_Users U On UE.USER_ID = U.ID 
             WHERE U.VALUE= and W.VALUE=`, email, name);
         if(data.length == 0){
             throw Error('Exercize Not Found')

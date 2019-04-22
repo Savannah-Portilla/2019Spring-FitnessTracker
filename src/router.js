@@ -5,6 +5,7 @@ import MyFriends from "./views/MyFriends.vue";
 import Register from "./views/Register.vue";
 import Login from "./views/Login.vue";
 import { Globals } from '@/models/api';
+import MyExercises from './views/MyExercises.vue';
 
 Vue.use(Router)
 
@@ -12,7 +13,8 @@ Vue.use(Router)
 
 // }
 
-const router = new Router({
+/*const router = new Router({*/
+  export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -37,6 +39,11 @@ const router = new Router({
       component: Login
     },
     {
+      path: '/MyExercises',
+      name: 'My Exercises',
+      component: MyExercises
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -46,8 +53,8 @@ const router = new Router({
     }
   ]
 })
-router.beforeEach((to, from, next) =>{
-  const publicRoutes = ['home', 'login', 'register'];
+/*router.beforeEach((to, from, next) =>{
+  const publicRoutes = ['home', 'login', 'register', 'my-exercises'];
   if(!publicRoutes.includes( to.name ) && !Globals.User){
     Globals.redirectRoute = { name: to.name, path: to.path, params: to.params, query: to.query, hash: to.hash  }
     return next('login');
@@ -55,4 +62,4 @@ router.beforeEach((to, from, next) =>{
   next(); // if you dont call next the server is going to think you are still doing an action
 })
 
-export default router;
+export default router;*/

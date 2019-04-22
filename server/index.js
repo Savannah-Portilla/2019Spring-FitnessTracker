@@ -14,7 +14,7 @@ const Daily_Foods     = require('./controllers/Daily_Foods');
 const daily_FoodModel     = require('./models/Daily_Food');
 
 const app = express();
-const port = 3320;
+const port = 3000;
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -22,18 +22,22 @@ app.use(function(req, res, next) {
     next();
   });
   app.use(express.static(path.join(__dirname, "../dist")));
-  app.use(function(req, res, next) {
+  
+  /*app.use(function(req, res, next) {
+    //console.log( {userModel} );
     try {
       const token = (req.headers.Authorization || "").split(' ')[1]
       req.User = userModel.getFromToken(token);
     } catch (error) {
-      const openActions = ['POST/users', 'POST/users/loginuser', 'GET/loginuser', 'GET/myfriends']
+      const openActions = ['POST/users', 'POST/users/register', 'POST/users/login', 'GET/login', 'GET/myfriends']
       if(req.method != "OPTIONS" && !openActions.includes(req.method + req.path.toLowerCase())){ // check if login required
+        //console.log( {openActions} );
         next(Error("Login Required"));
       }
     }
     next();
   });
+  */
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

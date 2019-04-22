@@ -8,7 +8,7 @@ export async function GetFriends(){
 export const GetFriends2 = () => api("Users");
 
 export async function Register(data){
-    const x = await api("Users", data)
+    const x = await api("Users/register", data)
     return x;
 }
 export async function Login(data){

@@ -1,4 +1,4 @@
-const API_ROOT = process.env.API_ROOT || "http://localhost:3320/";
+const API_ROOT = process.env.API_ROOT || "http://localhost:3000/";
 
 export const Globals = {
     User: null,
@@ -9,7 +9,7 @@ export const Globals = {
 }
 
 export function login(){
-    Globals.User = { name: "Bernie" }
+    Globals.User = { name: "Savannah" }
 }
 
 export async function api(url, data){
