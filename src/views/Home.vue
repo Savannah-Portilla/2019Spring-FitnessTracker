@@ -2,6 +2,8 @@
   <div class="home">
     <div class="jumbotron">
       <h1 align="center">Welcome to Hops!</h1>
+      <br>
+      
   <div class="card-group">
 
 <!-- Card 1 -->

@@ -8,57 +8,95 @@
             <router-link class="nav-link" to="/Exercises">Exercises</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link active" to="/AddExercises">Add an Exercise</router-link>
+            <router-link class="nav-link active" to="/AddExercise">Add an Exercise</router-link>
           </li>
         </ul>
         </div>
-          <div class="container">
-          <form action="/html/tags/html_form_tag_action.cfm">
-         </form>
-         <br>
-         <div class="form-group row">
-          <label for="name" class="col-3 col-form-label">Name</label>
-          <div class="col-9">
-          <input type="text" class="form-control" id="reps" name="name">
-          </div>
-          </div>
+        <div class="container">
+            <form @submit.prevent="submit">
+              <br>
+
+              <div class="form-group row">
+                <label for="name" class="col-3 col-form-label">Name</label>
+                <div class="col-9">
+                <input type="text" v-model="data.name"
+                    class="form-control"
+                    name="name"
+                    id="name"
+                    aria-describedby="helpname"
+                    placeholder="Exercise Name"
+                    required>
+                  <small id="helpname" class="form-text text-muted">Add the name of the Exercise</small>
+                </div>
+                </div>
+
           <fieldset class="form-group">
           <div class="row">
           <legend class="col-form-label col-3">Body Focus</legend>
           <div class="col-9">
           <div class="form-check">
           <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="legendRadio" id="legendRadio1" value="1">
+          <input v-model="data.body_focus" class="form-check-input" type="radio" 
+                    name="body_focus"
+                    id="body_focus"
+                    aria-describedby="helpbody_focus"
+                    placeholder="Body Focus"
+                    required>
           Arms
           </label>
           </div>
           <div class="form-check">
           <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="legendRadio" id="legendRadio2" value="2" checked>
+          <input v-model="data.body_focus" class="form-check-input" type="radio" 
+                    name="body_focus"
+                    id="body_focus"
+                    aria-describedby="helpbody_focus"
+                    placeholder="Body Focus"
+                    required>
           Legs
           </label>
           </div>
           <div class="form-check">
           <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="legendRadio" id="legendRadio3" value="3">
+          <input v-model="data.body_focus" class="form-check-input" type="radio" 
+                    name="body_focus"
+                    id="body_focus"
+                    aria-describedby="helpbody_focus"
+                    placeholder="Body Focus"
+                    required>
           Chest
           </label>
           </div>
           <div class="form-check">
           <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="legendRadio" id="legendRadio3" value="3">
+          <input v-model="data.body_focus" class="form-check-input" type="radio" 
+                    name="body_focus"
+                    id="body_focus"
+                    aria-describedby="helpbody_focus"
+                    placeholder="Body Focus"
+                    required>
           Back
           </label>
           </div>
           <div class="form-check">
           <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="legendRadio" id="legendRadio3" value="3">
+          <input v-model="data.body_focus" class="form-check-input" type="radio" 
+                    name="body_focus"
+                    id="body_focus"
+                    aria-describedby="helpbody_focus"
+                    placeholder="Body Focus"
+                    required>
           Core
           </label>
           </div>
           <div class="form-check">
           <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="legendRadio" id="legendRadio3" value="3">
+          <input v-model="data.body_focus" class="form-check-input" type="radio" 
+                    name="body_focus"
+                    id="body_focus"
+                    aria-describedby="helpbody_focus"
+                    placeholder="Body Focus"
+                    required>
           Cardio
           </label>
           </div>
@@ -69,26 +107,46 @@
           <div class="form-group row">
           <label for="reps" class="col-3 col-form-label">Reps</label>
           <div class="col-9">
-          <input type="text" class="form-control" id="reps" name="reps">
+          <input type="text" v-model="data.reps"
+                    class="form-control"
+                    name="reps"
+                    id="reps"
+                    aria-describedby="helpreps"
+                    placeholder="Reps"
+                    required>
+                  <small id="helpreps" class="form-text text-muted">Add the number of reps.</small>
           </div>
           </div>
+
           <div class="form-group row">
           <label for="sets" class="col-3 col-form-label">Sets</label>
           <div class="col-9">
-          <input type="text" class="form-control" id="sets" name="sets">
+          <input type="text" v-model="data.sets"
+                    class="form-control"
+                    name="sets"
+                    id="sets"
+                    aria-describedby="helpsets"
+                    placeholder="Sets"
+                    required>
+                  <small id="helpsets" class="form-text text-muted">Add the number of sets.</small>
+          </div>
+          </div>
+          
+
           <br>
+
          <div class="form-group row">
           <div class="offset-3 col-9">
           <button type="submit" class="btn btn-primary">Submit</button>
           </div>
           </div>
+          </form>
           </div>
           </div>
           </div>
-        
-      </div>
-    </div>
-    </div>
+          </div>
+          
+
 </template>
 
 <script>
