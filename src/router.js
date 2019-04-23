@@ -6,6 +6,7 @@ import Register from "./views/Register.vue";
 import Login from "./views/Login.vue";
 import { Globals } from '@/models/api';
 import MyExercises from './views/MyExercises.vue';
+import AddExercise from './views/AddExercise.vue';
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ Vue.use(Router)
       name: 'My Exercises',
       component: MyExercises
     },
+    {
+      path: '/AddExercise',
+      name: 'Add Exercise',
+      component: AddExercise
+    }, 
     {
       path: '/about',
       name: 'about',

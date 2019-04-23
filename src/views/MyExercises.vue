@@ -8,7 +8,7 @@
             <router-link class="nav-link active" to="/MyExercises"> My Exercises</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/Addexercises">Add an Exercise</router-link>
+            <router-link class="nav-link" to="/AddExercise">Add an Exercise</router-link>
           </li>
         </ul>
         <div>
