@@ -18,6 +18,11 @@ app.get("/:email", (req, res) => {   // get via email
     });
 
 });
+app.post("/getID", async (req, res, next) => {
+    user.getId(req.body)
+    .then(x => res.send(x))
+    .catch(next)
+})
 /* 
 app.post("/register", (req, res) => {   
 

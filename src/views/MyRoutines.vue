@@ -5,29 +5,25 @@
         <div class="card-header text-white bg-dark">
           <ul class="nav nav-pills card-header-pills">
           <li class="nav-item">
-            <router-link class="nav-link active" to="/MyExercises"> My Exercises</router-link>
+            <router-link class="nav-link active" to="/MyRoutines"> My Routines</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/AddExercise">Add an Exercise</router-link>
+            <router-link class="nav-link" to="/AddRoutine">Add a Routine</router-link>
           </li>
         </ul>
         <div>
-          <h1> My Exercises</h1>
+          <h1> My Routines</h1>
               <table class="table">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Body Focus</th>
-                <th scope="col">Reps</th>
-                <th scope="col">Sets</th>
+                <th scope="col">Exercises</th>
               </tr>
             </thead>
             <tbody>
-                <tr v-for="Exercise in Exercises" :key="Exercise.ID">
-                  <th scope="row">{{Exercise.Exercisename}}</th>
-                   <td>{{Exercise.defaultbody_focus}}</td>
-                  <td>{{Exercise.defaultreps}}</td>
-                  <td>{{Exercise.defaultsets}}</td>
+                <tr v-for="Routine in Routines" :key="Routine.ID">
+                  <th scope="row">{{Routine.RoutineName}}</th>
+                   <td>{{Routine.defaultExercises}}</td>
                 </tr>
             </tbody>
           </table>
@@ -41,14 +37,14 @@
 
 <script>
 import { Globals } from '@/models/api';
-import { getExercise } from '@/models/Exercises.js';
+import { getRoutine } from '@/models/Routines.js';
 export default {
   data: () => ({
     Globals: Globals,
-    Exercises: [],
+    Routines: [],
   }),
   async mounted() {
-    this.Exercises = await getExercise();
+    this.Routines = await getRoutine();
   },
 };
 </script>

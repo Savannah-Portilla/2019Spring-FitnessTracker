@@ -16,6 +16,14 @@ const model = {
     }
     return data[0];  
   },
+  //select by user id
+  async get(input){
+    const data = await conn.query("SELECT ID FROM Fitness_Users WHERE email=?", input.email);
+    if(!data) {
+        throw Error("User not found")
+    }
+    return data[0];
+},
   async register(input){   // Signup a new user
     // make sure password is long enough
     if(!input.password){

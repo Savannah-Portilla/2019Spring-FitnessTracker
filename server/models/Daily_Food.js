@@ -16,6 +16,13 @@ const model = {
         }
         return data[0];
     },
+    async getID(input) {
+        const data = await conn.query("SELECT ID FROM Fitness_Daily_Foods WHERE name=?", input.name);
+        if(!data) {
+            throw Error('Food not added.')
+        }
+        return data;
+    },
     async add(email, input){
         const data = await conn.query(
             `INSERT INTO Fitness_Daily_Foods F Join Fitness_Users_Daily_Foods UF On F.ID = UF.DAILY_FOODS_ID 

@@ -5,10 +5,10 @@
         <div class="card-header text-white bg-dark">
           <ul class="nav nav-pills card-header-pills">
           <li class="nav-item">
-            <router-link class="nav-link" to="/MyExercises">Exercises</router-link>
+            <router-link class="nav-link" to="/MyFoods">My Food Items</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link active" to="/AddExercise">Add an Exercise</router-link>
+            <router-link class="nav-link active" to="/AddFood">Add a Food Item</router-link>
           </li>
         </ul>
         </div>
@@ -24,53 +24,39 @@
                     name="name"
                     id="name"
                     aria-describedby="helpname"
-                    placeholder="Exercise Name"
+                    placeholder="Food Name"
                     required>
-                  <small id="helpname" class="form-text text-muted">Add the name of the Exercise</small>
+                  <small id="helpname" class="form-text text-muted">Add the name of the Fod Item</small>
                 </div>
                 </div>
 
             <div class="form-group row">
-          <label for="body_focus" class="col-3 col-form-label">Body Focus</label>
+          <label for="portion" class="col-3 col-form-label">Portion Size</label>
           <div class="col-9">
-          <input type="text" v-model="data.body_focus"
+          <input type="text" v-model="data.portion"
                     class="form-control"
-                    name="body_focus"
-                    id="body_focus"
-                    aria-describedby="helpbody_focus"
-                    placeholder="body_focus"
+                    name="portion"
+                    id="portion"
+                    aria-describedby="helpportion"
+                    placeholder="portion"
                     required>
-                  <small id="helpbody_focus" class="form-text text-muted">Add the body focus.</small>
+                  <small id="helpportion" class="form-text text-muted">Describe the portion size however you'd like to.</small>
           </div>
           </div>
             
         
           
           <div class="form-group row">
-          <label for="reps" class="col-3 col-form-label">Reps</label>
+          <label for="calorie_amount" class="col-3 col-form-label">Calorie Amount</label>
           <div class="col-9">
-          <input type="text" v-model="data.reps"
+          <input type="text" v-model="data.calorie_amount"
                     class="form-control"
-                    name="reps"
-                    id="reps"
-                    aria-describedby="helpreps"
-                    placeholder="Reps"
+                    name="calorie_amount"
+                    id="calorie_amount"
+                    aria-describedby="helpcalorie_amount"
+                    placeholder="calorie_amount"
                     required>
-                  <small id="helpreps" class="form-text text-muted">Add the number of reps.</small>
-          </div>
-          </div>
-
-          <div class="form-group row">
-          <label for="sets" class="col-3 col-form-label">Sets</label>
-          <div class="col-9">
-          <input type="text" v-model="data.sets"
-                    class="form-control"
-                    name="sets"
-                    id="sets"
-                    aria-describedby="helpsets"
-                    placeholder="Sets"
-                    required>
-                  <small id="helpsets" class="form-text text-muted">Add the number of sets.</small>
+                  <small id="helpcalorie_amount" class="form-text text-muted">How many calories are in this portion?</small>
           </div>
           </div>
           
@@ -93,19 +79,19 @@
 
 <script>
 import { Globals } from '@/models/api';
-import { addExercise } from '@/models/Exercises';
+import { addFood } from '@/models/Food_Items';
 import toastr from 'toastr';
 export default {
   data: () => ({
     data: {},
-    newExercise: null,
+    newFood: null,
   }),
   methods: {
     async submit() {
       try {
-        const m = await addExercise(this.data);
-        this.newExercise = m;
-        toastr.success("You've Successfully added the Exercise!");
+        const m = await addFood(this.data);
+        this.newFood = m;
+        toastr.success("You've Successfully added the Food Item!");
       } catch (error) {
         Globals.errors.push(error);
         toastr.error(error.message);

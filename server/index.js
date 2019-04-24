@@ -8,8 +8,8 @@ const Routines     = require('./controllers/Routines');
 const routineModel      = require('./models/Routine');
 const Food_Items     = require('./controllers/Food_Items');
 const food_ItemModel      = require('./models/Food_Item');
-const Exercizes     = require('./controllers/Exercizes');
-const exercizeModel      = require('./models/Exercize');
+const Exercises     = require('./controllers/Exercises');
+const exerciseModel      = require('./models/Exercise');
 const Daily_Foods     = require('./controllers/Daily_Foods');
 const daily_FoodModel     = require('./models/Daily_Food');
 
@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
-  app.use(express.static(path.join(__dirname, "../dist")));
+  // app.use(express.static(path.join(__dirname, "../dist")));
   
   /*app.use(function(req, res, next) {
     //console.log( {userModel} );
@@ -46,10 +46,10 @@ app.use('/Users', Users);
 app.use('/Workouts', Workouts);
 app.use('/Routines', Routines);
 app.use('/Food_Items', Food_Items);
-app.use('/Exercizes', Exercizes);
+app.use('/Exercises', Exercises);
 app.use('/Daily_Foods', Daily_Foods);
 
-app.get("*", (req, res)=> res.sendFile(path.join(__dirname, "../dist/index.html")))
+// app.get("*", (req, res)=> res.sendFile(path.join(__dirname, "../dist/index.html")))
 
 app.use(function (err, req, res, next) {
     console.error(err.stack)

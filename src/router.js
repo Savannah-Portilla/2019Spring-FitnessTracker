@@ -7,6 +7,14 @@ import Login from "./views/Login.vue";
 import { Globals } from '@/models/api';
 import MyExercises from './views/MyExercises.vue';
 import AddExercise from './views/AddExercise.vue';
+import MyRoutines from './views/MyRoutines.vue';
+import AddRoutine from './views/AddRoutine.vue';
+import MyWorkouts from './views/MyWorkouts.vue';
+import AddWorkout from './views/AddWorkout.vue';
+import MyFoods from './views/MyFoods.vue';
+import MyDailyFoods from './views/MyDailyFoods.vue';
+import AddFood from './views/AddFood.vue';
+import AddFoodLog from './views/AddFoodLog.vue';
 
 Vue.use(Router)
 
@@ -46,8 +54,48 @@ Vue.use(Router)
     },
     {
       path: '/AddExercise',
-      name: 'Add Exercise',
+      name: 'AddExercise',
       component: AddExercise
+    }, 
+    {
+      path: '/MyRoutines',
+      name: 'MyRoutines',
+      component: MyRoutines
+    }, 
+    {
+      path: '/AddRoutine',
+      name: 'AddRoutine',
+      component: AddRoutine
+    }, 
+    {
+      path: '/MyWorkouts',
+      name: 'MyWorkouts',
+      component: MyWorkouts
+    }, 
+    {
+      path: '/AddWorkout',
+      name: 'AddWorkout',
+      component: AddWorkout
+    }, 
+    {
+      path: '/MyFoods',
+      name: 'MyFoods',
+      component: MyFoods
+    }, 
+    {
+      path: '/MyDailyFoods',
+      name: 'MyDailyFoods',
+      component: MyDailyFoods
+    }, 
+    {
+      path: '/AddFood',
+      name: 'AddFood',
+      component: AddFood
+    }, 
+    {
+      path: '/AddFoodLog',
+      name: 'AddFoodLog',
+      component: AddFoodLog
     }, 
     {
       path: '/about',

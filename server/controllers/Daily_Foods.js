@@ -25,6 +25,11 @@ app.get("/get", (req, res) => {   //unique to each table
     });
 
 });
+app.post("/getID", async (req, res, next) => {
+    user.getId(req.body)
+    .then(x => res.send(x))
+    .catch(next)
+})
 app.post("/add", (req, res) => {   //unique to each table
 
     console.log(req.body);

@@ -5,29 +5,27 @@
         <div class="card-header text-white bg-dark">
           <ul class="nav nav-pills card-header-pills">
           <li class="nav-item">
-            <router-link class="nav-link active" to="/MyExercises"> My Exercises</router-link>
+            <router-link class="nav-link active" to="/MyFoods"> My Food Items</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/AddExercise">Add an Exercise</router-link>
+            <router-link class="nav-link" to="/AddFood">Add a Food Items</router-link>
           </li>
         </ul>
         <div>
-          <h1> My Exercises</h1>
+          <h1> My Food Items</h1>
               <table class="table">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Body Focus</th>
-                <th scope="col">Reps</th>
-                <th scope="col">Sets</th>
+                <th scope="col">Portion</th>
+                <th scope="col">Calorie Amount</th>
               </tr>
             </thead>
             <tbody>
-                <tr v-for="Exercise in Exercises" :key="Exercise.ID">
-                  <th scope="row">{{Exercise.Exercisename}}</th>
-                   <td>{{Exercise.defaultbody_focus}}</td>
-                  <td>{{Exercise.defaultreps}}</td>
-                  <td>{{Exercise.defaultsets}}</td>
+                <tr v-for="Food_Item in Food_Items" :key="Food_Item.ID">
+                  <th scope="row">{{Food_Item.Food_ItemName}}</th>
+                   <td>{{Food_Item.defaultPortion}}</td>
+                  <td>{{Food_Item.defaultCalorieAmount}}</td>
                 </tr>
             </tbody>
           </table>
@@ -41,14 +39,14 @@
 
 <script>
 import { Globals } from '@/models/api';
-import { getExercise } from '@/models/Exercises.js';
+import { getFood } from '@/models/Food_Items.js';
 export default {
   data: () => ({
     Globals: Globals,
-    Exercises: [],
+    Food_Items: [],
   }),
   async mounted() {
-    this.Exercises = await getExercise();
+    this.Food_Items = await getFood();
   },
 };
 </script>

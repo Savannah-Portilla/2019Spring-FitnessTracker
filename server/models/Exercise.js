@@ -9,14 +9,21 @@ const model = {
     async getAll(){
         return await conn.query("SELECT * FROM Fitness_Exercizes");   
     },
-    async getExercize(id){
+    async getID(input) {
+        const data = await conn.query("SELECT ID FROM Fitness_Exercizes WHERE name=?", input.name);
+        if(!data) {
+            throw Error('Exercise not added.')
+        }
+        return data;
+    },
+    async getExercise(id){
         const data = await conn.query("SELECT * FROM Fitness_Exrcizes WHERE Id=?", id);
         if(!data){
-            throw Error("Exercize not found");
+            throw Error("Exercise not found");
         }
         return data[0];
     },
-    async addExercize(input){
+    async addExercise(input){
         const data = await conn.query(
             `INSERT INTO Fitness_Exercizes E Join Fitness_Users_Exercizes UE On E.ID = UE.EXERCIZE_ID 
             Join Fitness_Users U On UE.USER_ID = U.ID 
@@ -28,27 +35,27 @@ const model = {
     getFromToken(token){
         return jwt.verify(token, JWT_SECRET);
     },
-    async updateExercize(email, name){
+    async updateExercise(email, name){
         const data = await conn.query(
             `Update Fitness_Exercizes E Join Fitness_Users_Exercizes UE On E.ID = UE.EXERCIZE_ID 
             Join Fitness_Users U On UE.USER_ID = U.ID 
             Set ?
             WHERE U.VALUE= and E.VALUE=`, email, name);
         if(data.length == 0){
-            throw Error('Exercize Not Found')
+            throw Error('Exercise Not Found')
         }else{
-        return { status: "success", message: "Exercize Succesfully Updated" };
+        return { status: "success", message: "Exercise Succesfully Updated" };
         }
     },  
-    async deleteExercize(email, name){
+    async deleteExercise(email, name){
         const data = await conn.query(
             `DELETE * FROM Fitness_Exercize E Join Fitness_Users_Exercize UE On E.ID = UE.EXERCIZE_ID 
             Join Fitness_Users U On UE.USER_ID = U.ID 
             WHERE U.VALUE= and W.VALUE=`, email, name);
         if(data.length == 0){
-            throw Error('Exercize Not Found')
+            throw Error('Exercise Not Found')
         }else{
-        return { status: "success", message: "Exercize Succesfully Deleted" };
+        return { status: "success", message: "Exercise Succesfully Deleted" };
         }
     }, 
 }; 

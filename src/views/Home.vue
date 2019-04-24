@@ -3,7 +3,7 @@
     <div class="jumbotron">
       <h1 align="center">Welcome to Hops!</h1>
       <br>
-      
+
   <div class="card-group">
 
 <!-- Card 1 -->
@@ -12,7 +12,13 @@
 <img alt="Hops Icon" src="../assets/hopsicon.png" height="220">
 <div class="card-body">
 <p class="card-text">Click here to see your Workouts, Routines and Exercises.</p>
-<a href="http://localhost:8080/MyExercises" class="btn btn-primary">My Fitness</a>
+<a href="http://localhost:8080/MyWorkouts" class="btn btn-primary">My Workouts</a>
+<br>
+<br>
+<a href="http://localhost:8080/MyRoutines" class="btn btn-primary">My Routines</a>
+<br>
+<br>
+<a href="http://localhost:8080/MyExercises" class="btn btn-primary">My Exercises</a>
 </div>
 </div>
 
@@ -22,7 +28,10 @@
 <img alt="Carrot Icon" src="../assets/carroticon.png" height="220">
 <div class="card-body">
 <p class="card-text">This will take you to your Daily Foods List and your Food Items.</p>
-<a href="#" class="btn btn-primary">My Eats</a>
+<a href="http://localhost:8080/MyDailyFoods" class="btn btn-primary">My Food Log</a>
+<br>
+<br>
+<a href="http://localhost:8080/MyFoods" class="btn btn-primary">My Food Items</a>
 </div>
 </div>
 
@@ -32,7 +41,7 @@
 <img alt="Friends Icon" src="../assets/friendsicon.png" height="240">
 <div class="card-body">
 <p class="card-text">See all of your friends!</p>
-<a href="#" class="btn btn-primary">My Friends</a>
+<a href="http://localhost:8080/MyFriends" class="btn btn-primary">My Friends</a>
 </div>
 </div>
 

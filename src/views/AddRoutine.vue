@@ -5,10 +5,10 @@
         <div class="card-header text-white bg-dark">
           <ul class="nav nav-pills card-header-pills">
           <li class="nav-item">
-            <router-link class="nav-link" to="/MyExercises">Exercises</router-link>
+            <router-link class="nav-link" to="/MyRoutines">Routines</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link active" to="/AddExercise">Add an Exercise</router-link>
+            <router-link class="nav-link active" to="/AddRoutine">Add a Routine</router-link>
           </li>
         </ul>
         </div>
@@ -26,7 +26,7 @@
                     aria-describedby="helpname"
                     placeholder="Exercise Name"
                     required>
-                  <small id="helpname" class="form-text text-muted">Add the name of the Exercise</small>
+                  <small id="helpname" class="form-text text-muted">Add the name of the Routine</small>
                 </div>
                 </div>
 
@@ -43,34 +43,18 @@
                   <small id="helpbody_focus" class="form-text text-muted">Add the body focus.</small>
           </div>
           </div>
-            
-        
-          
-          <div class="form-group row">
-          <label for="reps" class="col-3 col-form-label">Reps</label>
-          <div class="col-9">
-          <input type="text" v-model="data.reps"
-                    class="form-control"
-                    name="reps"
-                    id="reps"
-                    aria-describedby="helpreps"
-                    placeholder="Reps"
-                    required>
-                  <small id="helpreps" class="form-text text-muted">Add the number of reps.</small>
-          </div>
-          </div>
 
           <div class="form-group row">
-          <label for="sets" class="col-3 col-form-label">Sets</label>
+          <label for="sets" class="col-3 col-form-label">Exercises</label>
           <div class="col-9">
-          <input type="text" v-model="data.sets"
+          <input type="text" v-model="data.exercises"
                     class="form-control"
-                    name="sets"
-                    id="sets"
-                    aria-describedby="helpsets"
-                    placeholder="Sets"
+                    name="exercises"
+                    id="exercises"
+                    aria-describedby="helpexercises"
+                    placeholder="exercises"
                     required>
-                  <small id="helpsets" class="form-text text-muted">Add the number of sets.</small>
+                  <small id="helpexercises" class="form-text text-muted">Add some exercises.</small>
           </div>
           </div>
           
@@ -93,19 +77,19 @@
 
 <script>
 import { Globals } from '@/models/api';
-import { addExercise } from '@/models/Exercises';
+import { addExercise } from '@/models/Routines';
 import toastr from 'toastr';
 export default {
   data: () => ({
     data: {},
-    newExercise: null,
+    newRoutine: null,
   }),
   methods: {
     async submit() {
       try {
-        const m = await addExercise(this.data);
-        this.newExercise = m;
-        toastr.success("You've Successfully added the Exercise!");
+        const m = await addRoutine(this.data);
+        this.newRoutine = m;
+        toastr.success("You've Successfully added the Routine!");
       } catch (error) {
         Globals.errors.push(error);
         toastr.error(error.message);

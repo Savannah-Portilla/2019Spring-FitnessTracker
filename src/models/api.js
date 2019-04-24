@@ -2,6 +2,11 @@ const API_ROOT = process.env.API_ROOT || "http://localhost:3000/";
 
 export const Globals = {
     User: null,
+    Exercise: null,
+    Routines: null,
+    Workouts: null,
+    Food_Items: null,
+    Daily_Foods: null,
     errors: [],
     deleteError(i){
         this.errors.splice(i, 1);

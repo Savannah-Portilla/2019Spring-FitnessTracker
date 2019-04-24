@@ -16,6 +16,13 @@ const model = {
         }
         return data[0];
     },
+    async getID(input) {
+        const data = await conn.query("SELECT ID FROM Fitness_Workout WHERE name=?", input.name);
+        if(!data) {
+            throw Error('Workout not added.')
+        }
+        return data;
+    },
     async addWorkout(input){
         const data = await conn.query(
             `INSERT INTO Fitness_Workouts W Join Fitness_Users_Workouts UW On W.ID = UW.WORKOUT_ID 

@@ -9,6 +9,13 @@ const model = {
     async getAll(){
         return await conn.query("SELECT * FROM Fitness_Routines");   
     },
+    async getID(input) {
+        const data = await conn.query("SELECT ID FROM Fitness_Routines WHERE name=?", input.name);
+        if(!data) {
+            throw Error('Routine not added.')
+        }
+        return data;
+    },
     async getRoutine(id){
         const data = await conn.query("SELECT * FROM Fitness_Routines WHERE Id=?", id);
         if(!data){
