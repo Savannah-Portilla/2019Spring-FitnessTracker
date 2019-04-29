@@ -24,8 +24,11 @@
             </thead>
             <tbody>
                 <tr v-for="Workout in Workouts" :key="Workout.ID">
-                  <th scope="row">{{Workout.WorkoutName}}</th>
-                   <td>{{Workout.defaultWorkouts}}</td>
+                  <th scope="row">{{Workout.date_time}}</th>
+                   <td>{{Workout.calories_burned}}</td>
+                  <td>{{Workout.workout_minutes}}</td>
+                  <td>{{Workout.description}}</td>
+                  <td><button @click="deleteWorkout(Workout.ID)" class="btn btn-primary">Delete</button></td>
                 </tr>
             </tbody>
           </table>
@@ -39,17 +42,33 @@
 
 <script>
 import { Globals } from '@/models/api';
-import { getRoutine } from '@/models/Workouts.js';
+import { getWorkouts, deleteWorkout } from '@/models/Workouts.js';
+import toastr from 'toastr'
+
 export default {
   data: () => ({
     Globals: Globals,
     Workouts: [],
   }),
   async mounted() {
-    this.Workouts = await getWorkout();
+    this.Workouts = await getWorkouts();
   },
+  methods: {
+    async deleteWorkout(data) {
+      console.log(data);
+      try {
+        await deleteWorkout({ ID: data });
+        toastr.success("You've successfully deleted this workout!")
+      } catch (error) {
+        Globals.error.push(error);
+        toastr.error(error.message);
+      }
+
+    }
+  }
 };
 </script>
 
 <style>
+
 </style>

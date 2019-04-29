@@ -22,23 +22,22 @@ app.post("/getID", async (req, res, next) => {
     .then(x => res.send(x))
     .catch(next)
 })
-app.get("/getWorkout", (req, res) => {   //unique to each table
+app.get("/getWorkout", (req, res, next) => {   //unique to each table
 
-    Workout.getWorkout(req.params, (err, data) => {
-        if(err) throw err;
-        res.send(data);
+    Workout.getWorkout(req.user.ID)
+    .then(x => res.send(x))
+    .catch(next)
     });
 
-});
-app.post("/", (req, res) => {   //unique to each table
+app.post("/", (req, res, next) => {   //unique to each table
 
     console.log(req.body);
-    Workout.addWorkout(req.body, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+    Workout.addWorkout(req.body, req.user.ID)
+    .then(x => res.send(x))
+    .catch(next)
 
 });
+
 app.post("/updateWorkout", (req, res) => {   //unique to each table
 
     console.log(req.body);
@@ -48,13 +47,12 @@ app.post("/updateWorkout", (req, res) => {   //unique to each table
     });
 
 });
-app.post("/deleteWorkout", (req, res) => {   //unique to each table
+app.post("/deleteWorkout", (req, res, next) => {   //unique to each table
 
     console.log(req.body);
-    Workout.deleteWorkout(req.body, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+    Workout.deleteWorkout(req.body)
+    .then(x=> res.send(x))
+    .catch(next)
 
 });
 
