@@ -9,37 +9,19 @@ const model = {
     async getAll(){
         return await conn.query("SELECT * FROM Fitness_Exercizes");   
     },
-    async getID(input) {
-        const data = await conn.query("SELECT ID FROM Fitness_Exercizes WHERE name=?", input.name);
+    async getID(id) {
+        const data = await conn.query("SELECT * FROM Fitness_Exercizes WHERE id=?", id);
         if(!data) {
             throw Error('Exercise not added.')
         }
         return data;
     },
-    async getExercise(id){
-        const data = await conn.query("SELECT * FROM Fitness_Exrcizes WHERE Id=?", id);
-        if(!data){
-            throw Error("Exercise not found");
-        }
-        return data[0];
-    },
-    /* async addExercise(input){
+     async addExercise(input, user_ID){
         const data = await conn.query(
-            `INSERT INTO Fitness_Exercizes E (name,body_focus,reps,sets,date_created) VALUES(?)
-            FROM E, Fitness_Users_Exercizes UE, Fitness_Users U 
-            WHERE U.ID = UE.USER_ID AND UE.EXERCIZE_ID = E.ID`, 
-            [[input.name, input.body_focus, input.reps, input.sets, new Date()]]
+            "INSERT INTO Fitness_Exercizes (name,body_focus,reps,sets,date_created,user_ID) VALUES(?)",
+            [[input.name, input.body_focus, input.reps, input.sets, new Date(), user_ID]]
         );
-        return model.get(data.insertId);
-    }, */
-     async addExercise(input){
-        const data = await conn.query(
-            `INSERT INTO Fitness_Exercizes E (name,body_focus,reps,sets,date_created) VALUES(?) 
-            Join Fitness_Users_Exercizes UE On E.ID = UE.EXERCIZE_ID 
-            Join Fitness_Users U On UE.USER_ID = U.ID WHERE U.email=?`, 
-            [[input.name, input.body_focus, input.reps, input.sets, new Date()]]
-        );
-        return await model.get(data.insertId);
+        return model.getID(data.insertId);
     }, 
     async updateExercise(email, name){
         const data = await conn.query(

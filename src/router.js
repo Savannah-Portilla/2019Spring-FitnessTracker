@@ -15,6 +15,7 @@ import MyFoods from './views/MyFoods.vue';
 import MyDailyFoods from './views/MyDailyFoods.vue';
 import AddFood from './views/AddFood.vue';
 import AddFoodLog from './views/AddFoodLog.vue';
+import About from './views/About.vue';
 
 Vue.use(Router)
 
@@ -98,22 +99,20 @@ Vue.use(Router)
       component: AddFoodLog
     }, 
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/About',
+      name: 'About',
+      component: About
     }
+
   ]
 })
-router.beforeEach((to, from, next) =>{
+/* router.beforeEach((to, next) =>{
   const publicRoutes = ['login', 'register'];
   if(!publicRoutes.includes( to.name ) && !Globals.user){
     Globals.redirectRoute = { name: to.name, path: to.path, params: to.params, query: to.query, hash: to.hash  }
     return next('login');
   }
   next(); // if you dont call next the server is going to think you are still doing an action
-});
+}); */
 
 export default router;

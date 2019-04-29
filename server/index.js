@@ -23,20 +23,21 @@ app.use(function(req, res, next) {
   });
   // app.use(express.static(path.join(__dirname, "../dist")));
   
-/*    app.use(function(req, res, next) {
+    app.use(function(req, res, next) {
     //console.log( {userModel} );
     try {
-      const token = (req.headers.Authorization || "").split(' ')[1]
+      const token = (req.headers.authorization || "").split(' ')[1]
       req.user = userModel.getFromToken(token);
     } catch (error) {
       const openActions = ['POST/users', 'POST/users/register', 'POST/users/login', 'GET/login', 'GET/myfriends']
       if(req.method != "OPTIONS" && !openActions.includes(req.method + req.path.toLowerCase())){ // check if login required
         //console.log( {openActions} );
-        next(Error("Login Required"));
+        //next(Error("Login Required"));
       }
     }
+    console.log({user: req.user, token: req.headers.Authorization })
     next();
-  }); */
+  }); 
    
  /* app.use((req, res, next)=>{
   const user = userModel.getFromToken(req.headers.authorization.split(" ")[1]);

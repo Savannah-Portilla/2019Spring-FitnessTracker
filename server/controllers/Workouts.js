@@ -30,7 +30,7 @@ app.get("/getWorkout", (req, res) => {   //unique to each table
     });
 
 });
-app.post("/addWorkout", (req, res) => {   //unique to each table
+app.post("/", (req, res) => {   //unique to each table
 
     console.log(req.body);
     Workout.addWorkout(req.body, (err, data) => {

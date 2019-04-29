@@ -77,7 +77,7 @@
 
 <script>
 import { Globals } from '@/models/api';
-import { addExercise } from '@/models/Workouts';
+import { addWorkouts } from '@/models/Workouts';
 import toastr from 'toastr';
 export default {
   data: () => ({
@@ -87,7 +87,7 @@ export default {
   methods: {
     async submit() {
       try {
-        const m = await addWorkout(this.data);
+        const m = await addWorkouts(this.data);
         this.newWorkout = m;
         toastr.success("You've Successfully added the Workout!");
       } catch (error) {

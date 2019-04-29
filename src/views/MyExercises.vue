@@ -24,10 +24,10 @@
             </thead>
             <tbody>
                 <tr v-for="Exercise in Exercises" :key="Exercise.ID">
-                  <th scope="row">{{Exercise.Exercisename}}</th>
-                   <td>{{Exercise.defaultbody_focus}}</td>
-                  <td>{{Exercise.defaultreps}}</td>
-                  <td>{{Exercise.defaultsets}}</td>
+                  <th scope="row">{{Exercise.name}}</th>
+                   <td>{{Exercise.body_focus}}</td>
+                  <td>{{Exercise.reps}}</td>
+                  <td>{{Exercise.sets}}</td>
                   <td><button @click="deleteExercise(Exercise.ID)" class="btn btn-primary">Delete</button></td>
                 </tr>
             </tbody>

@@ -10,9 +10,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/Login">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Single Sign in</a>
-          </li>
         </ul>
       </div>
       <div class="card-body">

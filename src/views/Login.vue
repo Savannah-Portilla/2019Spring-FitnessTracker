@@ -10,9 +10,6 @@
           <li class="nav-item">
             <a class="nav-link active" href="/Login">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Single Sign in</a>
-          </li>
         </ul>
       </div>
       <div class="card-body">
@@ -20,15 +17,15 @@
         <div class="card-text">
             <form @submit.prevent="submit">
                 <div class="form-group">
-                  <label for="Email">Email</label>
+                  <label for="email">Email</label>
                   <input type="text" v-model="data.email"
-                    class="form-control" name="Email" id="Email" aria-describedby="helpEmail" placeholder="Email">
+                    class="form-control" name="email" id="email" aria-describedby="helpEmail" placeholder="Email">
                   <small id="helpEmail" class="form-text text-muted">You can use any email that you've use on our site</small>
                 </div>
                 <div class="form-group">
                   <label for="Password">Password</label>
                   <input type="password" v-model="data.password"
-                    class="form-control" name="Password" id="Password" placeholder="Password">
+                    class="form-control" name="password" id="password" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>

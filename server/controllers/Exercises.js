@@ -18,7 +18,7 @@ app.get("/getAll", (req, res) => {
 
 });
 app.post("/getID", async (req, res, next) => {
-    user.getId(req.body)
+    user.getId(req.params.id)
     .then(x => res.send(x))
     .catch(next)
 })
@@ -30,14 +30,12 @@ app.get("/getExercise", (req, res) => {   //unique to each table
     });
 
 });
-app.post("/addExercise", (req, res) => {   //unique to each table
+app.post("/addExercise", (req, res, next) => {   //unique to each table
 
     console.log(req.body);
-    Exercize.addExercise(req.body, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
-
+    Exercize.addExercise(req.body, req.user.ID)
+    .then(x => res.send(x))
+    .catch(next)
 });
 app.post("/updateExercise", (req, res) => {   //unique to each table
 

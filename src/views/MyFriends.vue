@@ -25,7 +25,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="User in Users" :key="User.ID">
+            <tr v-for="user in users" :key="user.ID">
               <th scope="row">{{user.f_name}}</th>
               <td>{{user.l_name}}</td>
               <td><button @click="addFriend(user.id)" class="btn btn-primary">Add Friend</button></td>
@@ -47,10 +47,10 @@ import toastr from 'toastr';
 export default {
   data: () => ({
     Globals: Globals,
-    Users: [],
+    users: [],
   }),
   async mounted() {
-    this.Users = await getAll();
+    this.users = await getAll();
   },
   methods: {
    
