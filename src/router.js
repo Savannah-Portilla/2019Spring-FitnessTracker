@@ -23,7 +23,7 @@ Vue.use(Router)
 // }
 
 /*const router = new Router({*/
-  export default new Router({
+  const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -107,13 +107,13 @@ Vue.use(Router)
     }
   ]
 })
-/*router.beforeEach((to, from, next) =>{
-  const publicRoutes = ['home', 'login', 'register', 'my-exercises'];
-  if(!publicRoutes.includes( to.name ) && !Globals.User){
+router.beforeEach((to, from, next) =>{
+  const publicRoutes = ['login', 'register'];
+  if(!publicRoutes.includes( to.name ) && !Globals.user){
     Globals.redirectRoute = { name: to.name, path: to.path, params: to.params, query: to.query, hash: to.hash  }
     return next('login');
   }
   next(); // if you dont call next the server is going to think you are still doing an action
-})
+});
 
-export default router;*/
+export default router;

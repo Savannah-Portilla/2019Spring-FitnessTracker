@@ -1,23 +1,58 @@
 <template>
-  <div class="row">
-    <div class="col">
-      <h1>This is {{name}}'s page. He is {{age}} years old </h1>
-      <input v-model="age" type="text" class="form-control" placeholder="Age" />
-      <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" :style="{width: age + '%'}"></div>
+    <div class="card-body">
+      <h2 class="card-title">{{Globals.user.f_name}}'s Profile</h2>
+      <div class="card-text">
+          <div class="row">
+            <div class="col col-lg-2">First Name:</div>
+            <div class="col-md-auto">
+              <div
+                class="control-label"
+              >{{Globals.user.f_name}}</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-lg-2">Last Name:</div>
+            <div class="col-md-auto">
+              <div
+                class="card-text"
+                 >{{Globals.user.l_name}}</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-lg-2">Birthday:</div>
+            <div class="col-md-auto">
+              <div
+                class="card-text"
+                 >{{Globals.user.birthday}}</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-lg-2">Weight:</div>
+            <div class="col-md-auto">
+              <div
+                class="card-text"
+                >{{Globals.user.weight}}</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
+import { Globals } from "@/models/api";
+import { get } from "@/models/Users";
+import toastr from "toastr";
 export default {
-    data: ()=> ({
-      name: "Savannah",
-      age: 24
-    })
-}
+  data: () => ({
+    Globals: Globals,
+    users: {},
+  }),
+  async mounted() {
+    let data = Globals.user.email;
+    this.users = await get({ email: data });
+  }
+};
 </script>
 
-<style type="scss">
+<style>
 </style>

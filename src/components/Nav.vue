@@ -12,7 +12,7 @@
                     <router-link class="nav-link" to="/" active-class="active" exact>Home <span class="sr-only">(current)</span></router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/About" active-class="active">About</router-link>
+                    <router-link class="nav-link" to="/About" active-class="active">Profile</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link" to="/MyFriends">My Friends</router-link>
@@ -37,7 +37,7 @@
                 <router-link to="/Login" class="nav-link">Login</router-link>
                 <router-link to="/Register" class="nav-link">Sign Up</router-link>
             </form>
-            <span class="navbar-text" v-if="Globals.User">Welcome {{Globals.User.f_name}} {{Globals.User.l_name}}</span>
+            <span class="navbar-text" v-if="Globals.User">Welcome {{Globals.user.f_name}} {{Globals.user.l_name}}</span>
         </div>
     </nav>
 </template>

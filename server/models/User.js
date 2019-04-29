@@ -9,13 +9,13 @@ const model = {
   async getAll(){
     return await conn.query("SELECT * FROM Fitness_Users");   
   },
-  async get(id){  // Return User Information by email serch
+  /* async get(id){  // Return User Information by email serch
     const data = await conn.query("SELECT * FROM Fitness_Users WHERE ID=?", id)
     if(!data.length){
       throw Error("User not found");
     }
     return data[0];  
-  },
+  }, */
   //select by user id
   async get(input){
     const data = await conn.query("SELECT ID FROM Fitness_Users WHERE email=?", input.email);
@@ -37,10 +37,7 @@ const model = {
       "INSERT INTO Fitness_Users (f_name,l_name,password,weight,weight_goal,email,birthday,date_created) VALUES (?)",
       [[input.f_name, input.l_name, hashedPassword, input.weight, input.weight_goal, input.email, input.birthday, new Date()]] 
       );
-    //console.log('async register');
-      const user = await model.get(data.insertId);
-      console.log({user})
-      return user;
+      return await model.get(data.insertId);
   },
   getFromToken(token){
     return jwt.verify(token, JWT_SECRET);

@@ -28,6 +28,7 @@
                    <td>{{Exercise.defaultbody_focus}}</td>
                   <td>{{Exercise.defaultreps}}</td>
                   <td>{{Exercise.defaultsets}}</td>
+                  <td><button @click="deleteExercise(Exercise.ID)" class="btn btn-primary">Delete</button></td>
                 </tr>
             </tbody>
           </table>

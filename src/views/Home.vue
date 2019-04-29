@@ -6,6 +6,15 @@
 
   <div class="card-group">
 
+<div class="card text-center">
+<div class="card-header">My Profile</div>
+<img alt="Hops Icon" src="../assets/hopslogo1.png" height="220">
+<div class="card-body">
+<p class="card-text">Click here to see your profile information.</p>
+<a href="http://localhost:8080/About" class="btn btn-primary">My Profile</a>
+</div>
+</div>
+
 <!-- Card 1 -->
 <div class="card text-center">
 <div class="card-header">My Hops</div>

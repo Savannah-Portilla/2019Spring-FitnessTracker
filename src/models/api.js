@@ -1,7 +1,7 @@
 const API_ROOT = process.env.API_ROOT || "http://localhost:3000/";
 
 export const Globals = {
-    User: null,
+    user: null,
     Exercise: null,
     Routines: null,
     Workouts: null,
@@ -14,7 +14,7 @@ export const Globals = {
 }
 
 export function login(){
-    Globals.User = { name: "Savannah" }
+    Globals.user = { name: "Savannah" }
 }
 
 export async function api(url, data){
@@ -27,6 +27,7 @@ export async function api(url, data){
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             headers: {
+                ...headers,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data), // body data type must match "Content-Type" header

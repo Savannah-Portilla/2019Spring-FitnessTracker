@@ -23,18 +23,24 @@ const model = {
         }
         return data[0];
     },
-    async addExercise(input){
+    /* async addExercise(input){
         const data = await conn.query(
-            `INSERT INTO Fitness_Exercizes E Join Fitness_Users_Exercizes UE On E.ID = UE.EXERCIZE_ID 
-            Join Fitness_Users U On UE.USER_ID = U.ID 
-            (name,body_focus,reps,sets,date_created,date_updated) WHERE U.VALUE=`, email, 
-            [[input.name, input.body_focus, input.reps, input.sets, input.date_created, new Date()]]
+            `INSERT INTO Fitness_Exercizes E (name,body_focus,reps,sets,date_created) VALUES(?)
+            FROM E, Fitness_Users_Exercizes UE, Fitness_Users U 
+            WHERE U.ID = UE.USER_ID AND UE.EXERCIZE_ID = E.ID`, 
+            [[input.name, input.body_focus, input.reps, input.sets, new Date()]]
+        );
+        return model.get(data.insertId);
+    }, */
+     async addExercise(input){
+        const data = await conn.query(
+            `INSERT INTO Fitness_Exercizes E (name,body_focus,reps,sets,date_created) VALUES(?) 
+            Join Fitness_Users_Exercizes UE On E.ID = UE.EXERCIZE_ID 
+            Join Fitness_Users U On UE.USER_ID = U.ID WHERE U.email=?`, 
+            [[input.name, input.body_focus, input.reps, input.sets, new Date()]]
         );
         return await model.get(data.insertId);
-    },
-    getFromToken(token){
-        return jwt.verify(token, JWT_SECRET);
-    },
+    }, 
     async updateExercise(email, name){
         const data = await conn.query(
             `Update Fitness_Exercizes E Join Fitness_Users_Exercizes UE On E.ID = UE.EXERCIZE_ID 

@@ -23,11 +23,11 @@ app.use(function(req, res, next) {
   });
   // app.use(express.static(path.join(__dirname, "../dist")));
   
-  /*app.use(function(req, res, next) {
+/*    app.use(function(req, res, next) {
     //console.log( {userModel} );
     try {
       const token = (req.headers.Authorization || "").split(' ')[1]
-      req.User = userModel.getFromToken(token);
+      req.user = userModel.getFromToken(token);
     } catch (error) {
       const openActions = ['POST/users', 'POST/users/register', 'POST/users/login', 'GET/login', 'GET/myfriends']
       if(req.method != "OPTIONS" && !openActions.includes(req.method + req.path.toLowerCase())){ // check if login required
@@ -36,12 +36,16 @@ app.use(function(req, res, next) {
       }
     }
     next();
-  });
-  */
+  }); */
+   
+ /* app.use((req, res, next)=>{
+  const user = userModel.getFromToken(req.headers.authorization.split(" ")[1]);
+  req.user = user;
+})   */
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "../NoFramework")));
+app.use(express.static(path.join(__dirname, "../index.html")));
 app.use('/Users', Users);
 app.use('/Workouts', Workouts);
 app.use('/Routines', Routines);
