@@ -7,34 +7,31 @@ const JWT_SECRET = process.env.JWT_SECRET || 'some long string..';
 
 const model = {
     async getAll(){
-        return await conn.query("SELECT * FROM Fitness_Daily_Food");   
+        return await conn.query("SELECT * FROM Fitness_Daily_Foods");   
     },
     async getDailyFoods(id){
-        const data = await conn.query("SELECT * FROM Fitness_Daily_Foods WHERE Id=?", id);
+        const data = await conn.query("SELECT * FROM Fitness_Daily_Foods WHERE ID=?", id);
         if(!data){
             throw Error("Not found");
         }
         return data[0];
     },
-    async getID(input) {
-        const data = await conn.query("SELECT ID FROM Fitness_Daily_Foods WHERE name=?", input.name);
+    async getID(id) {
+        const data = await conn.query("SELECT * FROM Fitness_Daily_Foods WHERE ID=?", id);
         if(!data) {
             throw Error('Food not added.')
         }
         return data;
     },
-    async add(email, input){
+
+    async add(input, user_ID){
         const data = await conn.query(
-            `INSERT INTO Fitness_Daily_Foods F Join Fitness_Users_Daily_Foods UF On F.ID = UF.DAILY_FOODS_ID 
-            Join Fitness_Users U On UF.USER_ID = U.ID 
-            (date,calorie_total,daily_foods,date_created,date_updated) WHERE U.VALUE=`, email, 
-            [[input.date, input.calorie_total, input.daily_foods, input.date_created, new Date()]]
+            "INSERT INTO Fitness_Daily_Foods (date,date_created,daily_foods,user_ID) VALUES(?)",
+            [[input.date, new Date(), input.daily_foods, user_ID]]
         );
-        return await model.get(data.insertId);
-    },
-    getFromToken(token){
-        return jwt.verify(token, JWT_SECRET);
-    },
+        return model.getID(data.insertId);
+    }, 
+
     async updateDailyFoods(email, date){
         const data = await conn.query(
             `Update Fitness_Daily_Foods F Join Fitness_Users_Daily_Foods UF On F.ID = UF.DAILY_FOODS_ID 

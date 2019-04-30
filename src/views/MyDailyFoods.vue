@@ -2,7 +2,7 @@
    <div class="row">
     <div class="col-lg-12">
       <div class="card text-center">
-        <div class="card-header text-white bg-dark">
+        <div class="card-header text-black bg-light">
           <ul class="nav nav-pills card-header-pills">
           <li class="nav-item">
             <router-link class="nav-link active" to="/MyDailyFoods"> My Food Log</router-link>
@@ -14,18 +14,16 @@
         <div>
           <h1> My Food Log</h1>
               <table class="table">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               <tr>
                 <th scope="col">Date</th>
                 <th scope="col">Daily Foods</th>
-                <th scope="col">Calorie Total</th>
               </tr>
             </thead>
             <tbody>
                 <tr v-for="Daily_Food in Daily_Foods" :key="Daily_Food.ID">
-                  <th scope="row">{{Daily_Food.Food_Date}}</th>
-                   <td>{{Daily_Food.defaultDaily_Foods}}</td>
-                  <td>{{Daily_Food.defaultCalorie_Total}}</td>
+                  <th scope="row">{{Daily_Food.date}}</th>
+                   <td>{{Daily_Food.daily_foods}}</td>
                 </tr>
             </tbody>
           </table>
@@ -52,4 +50,10 @@ export default {
 </script>
 
 <style>
+.table .thead-light th {
+ 
+  color: #ffffff;
+ 
+  background-color: #406BFF;
+}
 </style>

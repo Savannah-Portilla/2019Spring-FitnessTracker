@@ -18,7 +18,7 @@ app.get("/getAll", (req, res) => {
 
 });
 app.post("/getID", async (req, res, next) => {
-    user.getId(req.body)
+    user.getId(req.params.id)
     .then(x => res.send(x))
     .catch(next)
 })
@@ -30,13 +30,12 @@ app.get("/getFood", (req, res) => {   //unique to each table
     });
 
 });
-app.post("/addFoodItem", (req, res) => {   //unique to each table
+app.post("/addFood", (req, res, next) => {   //unique to each table
 
     console.log(req.body);
-    Food_Item.addFoodItem(req.body, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+    Food_Item.addFood(req.body, req.user.ID)
+    .then(x => res.send(x))
+    .catch(next)
 
 });
 app.post("/updateFoodItem", (req, res) => {   //unique to each table

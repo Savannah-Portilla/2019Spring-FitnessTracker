@@ -2,7 +2,7 @@
    <div class="row">
     <div class="col-lg-12">
       <div class="card text-center">
-        <div class="card-header text-white bg-dark">
+        <div class="card-header text-black bg-light">
           <ul class="nav nav-pills card-header-pills">
           <li class="nav-item">
             <router-link class="nav-link active" to="/MyFoods"> My Food Items</router-link>
@@ -14,7 +14,7 @@
         <div>
           <h1> My Food Items</h1>
               <table class="table">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Portion</th>
@@ -23,9 +23,9 @@
             </thead>
             <tbody>
                 <tr v-for="Food_Item in Food_Items" :key="Food_Item.ID">
-                  <th scope="row">{{Food_Item.Food_ItemName}}</th>
-                   <td>{{Food_Item.defaultPortion}}</td>
-                  <td>{{Food_Item.defaultCalorieAmount}}</td>
+                  <th scope="row">{{Food_Item.name}}</th>
+                   <td>{{Food_Item.portion}}</td>
+                  <td>{{Food_Item.calorie_amount}}</td>
                 </tr>
             </tbody>
           </table>
@@ -52,4 +52,10 @@ export default {
 </script>
 
 <style>
+.table .thead-light th {
+ 
+  color: #ffffff;
+ 
+  background-color: #406BFF;
+}
 </style>

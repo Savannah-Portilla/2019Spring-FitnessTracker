@@ -17,14 +17,12 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Body Focus</th>
                 <th scope="col">Exercises</th>
               </tr>
             </thead>
             <tbody>
                 <tr v-for="Routine in Routines" :key="Routine.ID">
                   <th scope="row">{{Routine.name}}</th>
-                  <td>{{Routine.body_focus}}</td>
                    <td>{{Routine.exercises}}</td>
                 </tr>
             </tbody>

@@ -7,7 +7,7 @@ export async function getDailyFoods() {
 }
 
 export async function add(data) {
-  const x = await api('Daily_Foods', data);
+  const x = await api('Daily_Foods/add', data);
   return x;
 }
 

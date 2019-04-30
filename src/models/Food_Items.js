@@ -7,7 +7,7 @@ export async function getFood() {
 }
 
 export async function addFood(data) {
-  const x = await api('Food_Items', data);
+  const x = await api('Food_Items/addFood', data);
   return x;
 }
 

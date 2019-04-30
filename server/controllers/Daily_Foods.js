@@ -1,5 +1,5 @@
 const express = require('express');
-const Food_List = require('../models/Daily_Food');
+const Daily_Food = require('../models/Daily_Food');
 
 const app = express.Router();
 
@@ -17,26 +17,25 @@ app.get("/getAll", (req, res) => {
     });
 
 });
-app.get("/get", (req, res) => {   //unique to each table
+app.get("/getDailyFoods", (req, res, next) => {   //unique to each table
 
-    Daily_Food.get(req.params, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+    Daily_Food.getDailyFoods()
+    .then(x=> res.send(x) )
+    .catch(next)
 
-});
+}),
+
 app.post("/getID", async (req, res, next) => {
-    user.getId(req.body)
+    Daily_Food.getId(req.params.id)
     .then(x => res.send(x))
     .catch(next)
 })
-app.post("/add", (req, res) => {   //unique to each table
+app.post("/add", (req, res, next) => {   //unique to each table
 
     console.log(req.body);
-    Daily_Food.add(req.body, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+    Daily_Food.add(req.body, req.user.ID)
+    .then(x => res.send(x))
+    .catch(next)
 
 });
 app.post("/updateDailyFoods", (req, res) => {   //unique to each table
