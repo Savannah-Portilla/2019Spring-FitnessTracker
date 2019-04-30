@@ -22,23 +22,24 @@ app.post("/getID", async (req, res, next) => {
     .then(x => res.send(x))
     .catch(next)
 })
-app.get("/getRoutine", (req, res) => {   //unique to each table
 
-    Routine.getRoutine(req.params, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+app.get("/getRoutine", (req, res, next) => {   //unique to each table
 
+        Routine.getRoutine(req.user.ID)
+        .then(x => res.send(x))
+        .catch(next)
+        
 });
-app.post("/addRoutine", (req, res) => {   //unique to each table
+
+app.post("/", (req, res, next) => {   //unique to each table
 
     console.log(req.body);
-    Routine.addRoutine(req.body, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
+    Routine.addRoutine(req.body, req.user.ID)
+    .then(x => res.send(x))
+    .catch(next)
 
 });
+
 app.post("/addExerciseToRoutine", (req, res) => {   //unique to each table
 
     console.log(req.body);

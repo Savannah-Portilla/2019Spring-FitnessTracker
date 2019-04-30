@@ -98,14 +98,14 @@ import toastr from 'toastr';
 export default {
   data: () => ({
     data: {},
-    newExercise: null,
+    newRoutine: null,
   }),
   methods: {
     async submit() {
       try {
-        const m = await addExercise(this.data);
-        this.newExercise = m;
-        toastr.success("You've Successfully added the Exercise!");
+        const m = await addRoutine(this.data);
+        this.newRoutine = m;
+        toastr.success("You've Successfully added the Routine!");
       } catch (error) {
         Globals.errors.push(error);
         toastr.error(error.message);

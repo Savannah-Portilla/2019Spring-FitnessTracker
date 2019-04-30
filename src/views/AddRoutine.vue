@@ -77,7 +77,7 @@
 
 <script>
 import { Globals } from '@/models/api';
-import { addExercise } from '@/models/Routines';
+import { addRoutine } from '@/models/Routines';
 import toastr from 'toastr';
 export default {
   data: () => ({

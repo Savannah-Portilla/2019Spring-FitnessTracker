@@ -23,6 +23,7 @@ const model = {
         }
         return data;
     },
+    
     async addWorkout(input, user_ID){
         const data = await conn.query(
             "INSERT INTO Fitness_Workouts (description,date_time,calories_burned,workout_minutes,user_ID) VALUES(?)",

@@ -2,7 +2,7 @@
    <div class="row">
     <div class="col-lg-12">
       <div class="card text-center">
-        <div class="card-header text-white bg-dark">
+        <div class="card-header text-black bg-light">
           <ul class="nav nav-pills card-header-pills">
           <li class="nav-item">
             <router-link class="nav-link active" to="/MyExercises"> My Exercises</router-link>
@@ -14,7 +14,7 @@
         <div>
           <h1> My Exercises</h1>
               <table class="table">
-            <thead class="thead-dark">
+            <thead class="thead-light">
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Body Focus</th>
@@ -55,4 +55,10 @@ export default {
 </script>
 
 <style>
+.table .thead-light th {
+ 
+  color: #ffffff;
+ 
+  background-color: #406BFF;
+}
 </style>
