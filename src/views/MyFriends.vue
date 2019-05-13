@@ -15,6 +15,10 @@
             <router-link class="nav-link" to="/Pending">Pending Requests</router-link>
           </li>
         </ul>
+        <br>
+        <div class="active-cyan-3 active-cyan-4 mb-4">
+        <vue-bootstrap-typeahead placeholder="Search" v-model="query" :data="['Erik', 'Mike', 'Savannah', 'sal', 'peter', 'Aria']"/>
+      </div>
         <div>
         <h1>Users</h1>
         <table class="table table-dark">
@@ -44,7 +48,11 @@
 import { Globals } from '@/models/api';
 import { getAll } from '@/models/Users';
 import toastr from 'toastr';
+import VueBootstrapTypeahead from 'vue-bootstrap-typeahead';
 export default {
+  components: {
+        VueBootstrapTypeahead
+    },
   data: () => ({
     Globals: Globals,
     Users: [],

@@ -26,6 +26,7 @@
     "toastr": "^2.1.4",
     "v-tooltip": "^2.0.1",
     "vue": "^2.6.6",
+    "vue-bootstrap-typeahead": "^0.2.6",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

@@ -12,7 +12,6 @@ const Exercises     = require('./controllers/Exercises');
 const exerciseModel      = require('./models/Exercise');
 const Daily_Foods     = require('./controllers/Daily_Foods');
 const daily_FoodModel     = require('./models/Daily_Food');
-
 const app = express();
 const port = 3000;
 
